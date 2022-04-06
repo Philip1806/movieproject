@@ -37,6 +37,12 @@
         </h6>
         <ul class="nav flex-column mb-2">
             <li class="nav-item">
+                <a class="nav-link {{ Request::path() === 'panel/movies' ? 'active' : '' }}"
+                    href="{{ route('movies.index') }}">
+                    <i class="nav-icon fa-solid fa-clapperboard"></i>
+                    Филми</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="typography.html">
                     <i class="nav-icon fa-solid fa-cubes"></i>
                     Жанрове</a>

@@ -25,5 +25,8 @@ Route::group(
     ],
     static function () {
         Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('panel.index');
+        Route::resource('/movies', App\Http\Controllers\MoviesController::class)->only([
+            'index', 'edit', 'store', 'update', 'create', 'destroy'
+        ]);
     }
 );
