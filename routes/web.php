@@ -29,5 +29,6 @@ Route::group(
             'index', 'edit', 'store', 'update', 'create', 'destroy'
         ]);
         Route::get('/directors', [App\Http\Controllers\DirectorsController::class, 'index'])->name('panel.directors.index');
+        Route::get('/cast', [App\Http\Controllers\ActorsController::class, 'index'])->name('panel.cast.index');
     }
 );

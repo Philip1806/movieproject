@@ -49,6 +49,12 @@
                     Режисьори</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link {{ Request::path() === 'panel/cast' ? 'active' : '' }}"
+                    href="{{ route('panel.cast.index') }}">
+                    <i class="nav-icon fa-solid fa-person-circle-plus"></i>
+                    Актьори</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="typography.html">
                     <i class="nav-icon fa-solid fa-cubes"></i>
                     Жанрове</a>
