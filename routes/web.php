@@ -28,5 +28,6 @@ Route::group(
         Route::resource('/movies', App\Http\Controllers\MoviesController::class)->only([
             'index', 'edit', 'store', 'update', 'create', 'destroy'
         ]);
+        Route::get('/directors', [App\Http\Controllers\DirectorsController::class, 'index'])->name('panel.directors.index');
     }
 );

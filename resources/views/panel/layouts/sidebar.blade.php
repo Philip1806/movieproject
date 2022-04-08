@@ -43,6 +43,12 @@
                     Филми</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link {{ Request::path() === 'panel/directors' ? 'active' : '' }}"
+                    href="{{ route('panel.directors.index') }}">
+                    <i class="nav-icon fa-solid fa-person-circle-plus"></i>
+                    Режисьори</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="typography.html">
                     <i class="nav-icon fa-solid fa-cubes"></i>
                     Жанрове</a>
