@@ -96,6 +96,18 @@
             $(id).modal('show');
         })
     </script>
+    <script>
+        $("#datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+        });
+        $("#datepicker").datepicker("option", "dateFormat", "dd/mm/yy");
+        $("#datepicker1").datepicker({
+            changeMonth: true,
+            changeYear: true,
+        });
+        $("#datepicker1").datepicker("option", "dateFormat", "dd/mm/yy");
+    </script>
 </body>
 
 </html>

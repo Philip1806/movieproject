@@ -15,17 +15,17 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('movies.create') }}">
                     <i class="nav-icon fa-solid fa-clapperboard"></i>
                     Добавяне на филм</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="typography.html">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#addDirector">
                     <i class="nav-icon fa-solid fa-person-circle-plus"></i>
                     Добавяне на режисьори</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="typography.html">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#addActor">
                     <i class="nav-icon fa-solid fa-person-circle-plus"></i>
                     Добавяне на актьори</a>
             </li>
@@ -67,3 +67,44 @@
         </ul>
     </div>
 </nav>
+
+<!-- Modal -->
+<div class="modal fade" id="addActor" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addActorLabel">Добавяне на съдържание</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @livewire('actors-create')
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отказ</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="addDirector" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="addDirectorLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addDirectorLabel">Добавяне на съдържание</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @livewire('directors-create')
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отказ</button>
+            </div>
+        </div>
+    </div>
+</div>

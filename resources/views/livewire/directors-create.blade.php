@@ -11,7 +11,7 @@
         @enderror
         <label class="form-label">Дата на раждане</label>
         <div wire:ignore>
-            <input type="text" autocomplete="off" id="datepicker" class="form-control">
+            <input type="text" autocomplete="off" id="datepicker1" class="form-control">
         </div>
         @error('director.birth_date')
             <p class="error">{{ $message }}</p>
@@ -20,7 +20,7 @@
 
     </form>
     <script>
-        $("#datepicker").datepicker({
+        $("#datepicker1").datepicker({
             changeMonth: true,
             changeYear: true,
             onSelect: function(dateText) {
