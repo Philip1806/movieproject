@@ -11,4 +11,8 @@ class Actor extends Model
     protected $table = 'cast';
     public $timestamps = false;
     protected $dates = ['birth_date'];
+    public function movies()
+    {
+        return $this->belongsToMany(Movie::class, 'movie_cast', 'cast_id', 'movie_id');
+    }
 }

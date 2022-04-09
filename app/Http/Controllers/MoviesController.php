@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Actor;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -26,7 +27,12 @@ class MoviesController extends Controller
      */
     public function create()
     {
-        return view('panel.movies.create');
+        $allActors = Actor::all();
+        $actors = array();
+        foreach ($allActors as $actor) {
+            $actors[$actor->id] = $actor->name;
+        }
+        return view('panel.movies.create')->with('actors', $actors);
     }
 
     /**
@@ -52,6 +58,7 @@ class MoviesController extends Controller
         $movie->plot = $request->plot;
         $movie->director_id = 0; //TODO
         $movie->save();
+        $movie->actors()->sync($request->actors, false);
 
         Session::flash('success', "Филма е добавен");
         return redirect()->route('movies.index');;
@@ -65,7 +72,12 @@ class MoviesController extends Controller
      */
     public function edit($id)
     {
-        return view('panel.movies.edit')->with('movie', Movie::findOrFail($id));
+        $allActors = Actor::all();
+        $actors = array();
+        foreach ($allActors as $actor) {
+            $actors[$actor->id] = $actor->name;
+        }
+        return view('panel.movies.edit')->with('movie', Movie::findOrFail($id))->with('actors', $actors);
     }
 
     /**
@@ -89,6 +101,7 @@ class MoviesController extends Controller
         $movie->original_title = $request->original_title;
         $movie->year = $request->year;
         $movie->plot = $request->plot;
+        $movie->actors()->sync($request->actors);
         $movie->save();
 
         Session::flash('success', "Филма е редактиран");
