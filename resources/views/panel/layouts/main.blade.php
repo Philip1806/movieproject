@@ -15,6 +15,14 @@
         <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
+                {{-- Nothing in the world is as soft and yielding as water. --}}
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editProfile">
+                    {{ auth()->user()->name }}
+                </button>
+            </li>
+        </ul>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
                 <a href="{{ route('logout') }}" class="nav-link"
                     onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                     Изход
@@ -25,7 +33,6 @@
             </li>
         </ul>
     </nav>
-
     <div class="container-fluid">
         <div class="row">
             @include('panel.layouts.sidebar')
@@ -61,7 +68,14 @@
                         </ul>
                     </div>
                 @endif
-
+                <div class="modal" id="editProfile" tabindex="-1" aria-labelledby="editProfileLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            @livewire('user-edit')
+                        </div>
+                    </div>
+                </div>
                 @yield('content')
             </main>
         </div>
@@ -74,8 +88,13 @@
             toastr[param['type']](param['message'], param['title']);
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    <script>
+        window.livewire.on('closeModal', id => {
+            $(id).modal('hide');
+        })
+        window.livewire.on('showModal', id => {
+            $(id).modal('show');
+        })
     </script>
 </body>
 
