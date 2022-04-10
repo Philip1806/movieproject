@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Actor;
+use App\Models\Category;
 use App\Models\Director;
 use App\Models\Movie;
 use Illuminate\Http\Request;
@@ -39,7 +40,13 @@ class MoviesController extends Controller
         foreach ($allDirectors as $director) {
             $directors[$director->id] = $director->name;
         }
-        return view('panel.movies.create')->with('actors', $actors)->with('directors', $directors);
+
+        $allGenres = Category::all();
+        $genres = array();
+        foreach ($allGenres as $genre) {
+            $genres[$genre->id] = $genre->name;
+        }
+        return view('panel.movies.create')->with('genres', $genres)->with('actors', $actors)->with('directors', $directors);
     }
 
     /**
@@ -80,7 +87,7 @@ class MoviesController extends Controller
         }
         $movie->save();
         $movie->actors()->sync($request->actors, false);
-
+        $movie->categories()->sync($request->categories, false);
         Session::flash('success', "Филма е добавен");
         return redirect()->route('movies.index');;
     }
@@ -103,7 +110,13 @@ class MoviesController extends Controller
         foreach ($allDirectors as $director) {
             $directors[$director->id] = $director->name;
         }
-        return view('panel.movies.edit')->with('movie', Movie::findOrFail($id))->with('actors', $actors)->with('directors', $directors);
+
+        $allGenres = Category::all();
+        $genres = array();
+        foreach ($allGenres as $genre) {
+            $genres[$genre->id] = $genre->name;
+        }
+        return view('panel.movies.edit')->with('movie', Movie::findOrFail($id))->with('genres', $genres)->with('actors', $actors)->with('directors', $directors);
     }
 
     /**
@@ -146,7 +159,7 @@ class MoviesController extends Controller
             }
             $movie->img = $imageaddress;
         }
-
+        $movie->categories()->sync($request->categories);
         $movie->actors()->sync($request->actors);
         $movie->save();
 
@@ -163,6 +176,9 @@ class MoviesController extends Controller
     public function destroy($id)
     {
         $movie = Movie::findOrFail($id);
+        $movie->categories()->detach();
+        $movie->actors()->detach();
+        $movie->deleteImage();
         $movie->delete();
         Session::flash('success', "Филма е премахнат.");
         return redirect()->back();;

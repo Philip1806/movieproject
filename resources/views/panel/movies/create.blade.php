@@ -33,6 +33,10 @@
                     {{ Form::number('year', null, ['class' => 'form-control']) }}
                 </div>
                 <div class="mb-3">
+                    <label class="form-label">Жанрове</label>
+                    {{ Form::select('categories[]', $genres, null, ['class' => 'form-control select2-multi','multiple' => 'multiple','id' => 'multisel']) }}
+                </div>
+                <div class="mb-3">
                     <label class="form-label">Режисьор</label>
                     {{ Form::select('director', $directors, null, ['class' => 'form-control select2-multi', 'id' => 'multisel']) }}
                 </div>

@@ -22,7 +22,9 @@ class CategoryTable extends Component
     }
     public function deleteCategory()
     {
-        Category::findOrFail($this->deleteId)->delete();
+        $genre =  Category::findOrFail($this->deleteId);
+        $genre->movies()->detach();
+        $genre->delete();
         $this->emit('alert', ['type' => 'success', 'message' => 'Жанра е премахнат']);
     }
 }

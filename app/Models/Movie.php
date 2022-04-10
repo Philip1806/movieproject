@@ -24,6 +24,10 @@ class Movie extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'movie_genre', 'movie_id', 'genre_id');
+    }
     public function getImageUrl()
     {
         if ($this->img) {
