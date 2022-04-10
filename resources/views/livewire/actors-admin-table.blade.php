@@ -2,6 +2,7 @@
     <table class="table table-striped table-hover table-lg">
         <thead class="thead-dark">
             <tr>
+                <th></th>
                 <th>Име</th>
                 <th>Дата на раждане</th>
                 <th style="min-width: 150px;"></th>
@@ -10,6 +11,13 @@
         <tbody>
             @forelse ($actors as $actor)
                 <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <p class="font-bold ms-3 mb-0">
+                                <img src="{{ $actor->getImageUrl() }}" height="100px">
+                            </p>
+                        </div>
+                    </td>
                     <td class="align-middle">
                         <div class="d-flex align-items-center">
                             <p class="font-bold ms-3 mb-0">

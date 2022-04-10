@@ -22,7 +22,9 @@ class ActorsAdminTable extends Component
     }
     public function deleteActor()
     {
-        Actor::findOrFail($this->deleteId)->delete();
+        $actor = Actor::findOrFail($this->deleteId);
+        $actor->deleteImage();
+        $actor->delete();
         $this->emit('alert', ['type' => 'success', 'message' => 'Актьора е премахнат']);
     }
 }
