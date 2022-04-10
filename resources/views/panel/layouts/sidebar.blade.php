@@ -55,14 +55,10 @@
                     Актьори</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="typography.html">
+                <a class="nav-link {{ Request::path() === 'panel/categories' ? 'active' : '' }}"
+                    href="{{ route('panel.categories.index') }}">
                     <i class="nav-icon fa-solid fa-cubes"></i>
                     Жанрове</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="typography.html">
-                    <i class="nav-icon fa-solid fa-users"></i>
-                    Потребители</a>
             </li>
         </ul>
     </div>

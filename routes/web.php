@@ -30,5 +30,6 @@ Route::group(
         ]);
         Route::get('/directors', [App\Http\Controllers\DirectorsController::class, 'index'])->name('panel.directors.index');
         Route::get('/cast', [App\Http\Controllers\ActorsController::class, 'index'])->name('panel.cast.index');
+        Route::get('/categories', [App\Http\Controllers\CategoriesController::class, 'index'])->name('panel.categories.index');
     }
 );
