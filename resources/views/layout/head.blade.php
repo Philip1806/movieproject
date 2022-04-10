@@ -10,3 +10,4 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
 <!-- Dark MDB theme -->
 <link rel="stylesheet" href="{{ url('css/mdb.dark.min.css') }}" />
+@yield('meta')
