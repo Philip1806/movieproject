@@ -46,6 +46,7 @@ class ActorsCreate extends Component
         if ($this->imgFilename) {
             $this->actor->img = $this->imgFilename;
         }
+        $this->actor->user_id = auth()->user()->id;
         $this->actor->save();
         $this->emit('closeModal', "#addActor");
         $this->emit('alert', ['type' => 'success', 'message' => 'Актьора е добавен', 'title' => $this->actor->name]);

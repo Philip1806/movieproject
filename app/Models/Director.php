@@ -16,6 +16,10 @@ class Director extends Model
     {
         return $this->hasMany(Movie::class, 'director_id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public static function convert_date($unformated_date, $del = "/", $carbon = false)
     {
         $dateString = explode($del, $unformated_date);

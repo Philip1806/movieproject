@@ -34,7 +34,7 @@ class DirectorsCreate extends Component
             $this->emit('alert', ['type' => 'error', 'message' => 'Грешен формат на датата.', 'title' => "date:" . $this->date]);
             return;
         }
-
+        $this->director->user_id = auth()->user()->id;
         $this->director->save();
         $this->emit('alert', ['type' => 'success', 'message' => 'Режисьора е добавен', 'title' => $this->director->name]);
     }

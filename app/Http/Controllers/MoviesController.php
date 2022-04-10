@@ -63,6 +63,7 @@ class MoviesController extends Controller
         $movie->original_title = $request->original_title;
         $movie->year = $request->year;
         $movie->plot = $request->plot;
+        $movie->user_id = auth()->user()->id;
         if (Director::find($request->director)) {
             $movie->director_id = $request->director;
         } else {
