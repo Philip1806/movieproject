@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Actor;
+use App\Models\Director;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -32,7 +33,13 @@ class MoviesController extends Controller
         foreach ($allActors as $actor) {
             $actors[$actor->id] = $actor->name;
         }
-        return view('panel.movies.create')->with('actors', $actors);
+
+        $allDirectors = Director::all();
+        $directors = array();
+        foreach ($allDirectors as $director) {
+            $directors[$director->id] = $director->name;
+        }
+        return view('panel.movies.create')->with('actors', $actors)->with('directors', $directors);
     }
 
     /**
@@ -56,7 +63,20 @@ class MoviesController extends Controller
         $movie->original_title = $request->original_title;
         $movie->year = $request->year;
         $movie->plot = $request->plot;
-        $movie->director_id = 0; //TODO
+        if (Director::find($request->director)) {
+            $movie->director_id = $request->director;
+        } else {
+            Session::flash('error', "Режисьора не съществува");
+            return redirect()->route('movies.index');;
+        }
+        if ($request->image) {
+            try {
+                $movie->img = Movie::saveImage($request->file('image'));
+            } catch (\Exception $e) {
+                Session::flash('error', "Проблем при качване на файл.");
+                return redirect()->back();;
+            }
+        }
         $movie->save();
         $movie->actors()->sync($request->actors, false);
 
@@ -77,7 +97,12 @@ class MoviesController extends Controller
         foreach ($allActors as $actor) {
             $actors[$actor->id] = $actor->name;
         }
-        return view('panel.movies.edit')->with('movie', Movie::findOrFail($id))->with('actors', $actors);
+        $allDirectors = Director::all();
+        $directors = array();
+        foreach ($allDirectors as $director) {
+            $directors[$director->id] = $director->name;
+        }
+        return view('panel.movies.edit')->with('movie', Movie::findOrFail($id))->with('actors', $actors)->with('directors', $directors);
     }
 
     /**
@@ -101,6 +126,26 @@ class MoviesController extends Controller
         $movie->original_title = $request->original_title;
         $movie->year = $request->year;
         $movie->plot = $request->plot;
+        if (Director::find($request->director)) {
+            $movie->director_id = $request->director;
+        } else {
+            Session::flash('error', "Режисьора не съществува");
+            return redirect()->route('movies.index');;
+        }
+        if ($request->removeimg) {
+            $movie->deleteImage();
+        }
+        if ($request->image) {
+            try {
+                $imageaddress = Movie::saveImage($request->file('image'));
+                $movie->deleteImage();
+            } catch (\Exception $e) {
+                Session::flash('error', "Проблем при качване на файл.");
+                return redirect()->back();;
+            }
+            $movie->img = $imageaddress;
+        }
+
         $movie->actors()->sync($request->actors);
         $movie->save();
 

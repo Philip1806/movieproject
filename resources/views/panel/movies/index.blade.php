@@ -28,6 +28,7 @@
                         <td class="align-middle">
                             <div class="d-flex align-items-center">
                                 <p class="font-bold ms-3 mb-0">
+                                    <img src="{{ $movie->getImageUrl() }}" height="100px">
                                     <b>{{ $movie->title }}</b> ({{ $movie->year }})
                                 </p>
                             </div>

@@ -12,7 +12,10 @@ class Director extends Model
     protected $table = 'directors';
     public $timestamps = false;
     protected $dates = ['birth_date'];
-
+    public function movies()
+    {
+        return $this->hasMany(Movie::class, 'director_id');
+    }
     public static function convert_date($unformated_date, $del = "/", $carbon = false)
     {
         $dateString = explode($del, $unformated_date);

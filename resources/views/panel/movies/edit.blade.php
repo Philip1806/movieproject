@@ -26,8 +26,24 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="mb-3">
+                    <label class="form-label">Снимка</label>
+                    <input type="file" name="image" class="form-control">
+                </div>
+                @if ($movie->img)
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" name="removeimg">
+                        <label class="form-check-label">
+                            Премахни качената снимка
+                        </label>
+                    </div>
+                @endif
+                <div class="mb-3">
                     <label class="form-label">Година</label>
                     {{ Form::number('year', null, ['class' => 'form-control']) }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Режисьор</label>
+                    {{ Form::select('director', $directors, $movie->director_id, ['class' => 'form-control select2-multi','id' => 'multisel']) }}
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Актьори</label>
