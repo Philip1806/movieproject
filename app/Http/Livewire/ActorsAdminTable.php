@@ -14,7 +14,12 @@ class ActorsAdminTable extends Component
 
     public function render()
     {
-        return view('livewire.actors-admin-table')->with('actors', Actor::paginate(10));
+        if ($this->search) {
+            $actors =  Actor::where('name', 'like', '%' . $this->search . '%')->paginate(10);
+        } else {
+            $actors =  Actor::paginate(10);
+        }
+        return view('livewire.actors-admin-table')->with('actors', $actors);
     }
     public function deleteId($id)
     {

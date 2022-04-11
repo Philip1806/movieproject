@@ -16,7 +16,12 @@ class DirectorsAdminTable extends Component
 
     public function render()
     {
-        return view('livewire.directors-admin-table')->with('directors', Director::paginate(10));
+        if ($this->search) {
+            $directors =  Director::where('name', 'like', '%' . $this->search . '%')->paginate(10);
+        } else {
+            $directors =  Director::paginate(10);
+        }
+        return view('livewire.directors-admin-table')->with('directors', $directors);
     }
     public function deleteId($id)
     {
