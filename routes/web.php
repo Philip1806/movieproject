@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/movies', [App\Http\Controllers\HomeController::class, 'movies'])->name('home.movies');
+Route::get('/movies/{slug}', [App\Http\Controllers\HomeController::class, 'moviesShow'])->name('home.movies.show');
+Route::get('/movies/genre/{slug}', [App\Http\Controllers\HomeController::class, 'genre'])->name('home.movies.genre');
+Route::get('/actors', [App\Http\Controllers\HomeController::class, 'actors'])->name('home.actors.index');
+Route::get('/actors/{slug}', [App\Http\Controllers\HomeController::class, 'actorsShow'])->name('home.actors.show');
 
 Auth::routes();
 

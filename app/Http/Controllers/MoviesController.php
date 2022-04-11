@@ -133,6 +133,7 @@ class MoviesController extends Controller
             'image' => 'image|max:8192',
             'plot' => 'required|min:3|max:250',
             'year' => 'required|numeric',
+            'slug' => 'max:250',
         ];
         $this->validate($request, $rules);
         $movie = Movie::findOrFail($id);
@@ -158,6 +159,9 @@ class MoviesController extends Controller
                 return redirect()->back();;
             }
             $movie->img = $imageaddress;
+        }
+        if ($request->slug) {
+            $movie->slug = $request->slug;
         }
         $movie->categories()->sync($request->categories);
         $movie->actors()->sync($request->actors);

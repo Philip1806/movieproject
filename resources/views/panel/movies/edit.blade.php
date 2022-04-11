@@ -23,6 +23,10 @@
                     <label class="form-label">Описание</label>
                     {{ Form::text('plot', null, ['class' => 'form-control']) }}
                 </div>
+                <div class="mb-3">
+                    <label class="form-label">URL</label>
+                    {{ Form::text('slug', null, ['class' => 'form-control', 'id' => 'name']) }}
+                </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="mb-3">

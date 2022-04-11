@@ -36,13 +36,13 @@
                 <a class="nav-link" href="{{ url('') }}">Начало</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Списък с филми</a>
+                <a class="nav-link" href="{{ route('home.movies') }}">Списък с филми</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Добавяне на филм</a>
+                <a class="nav-link" href="{{ route('movies.create') }}">Добавяне на филм</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Списък с актьори</a>
+                <a class="nav-link" href="{{ route('home.actors.index') }}">Списък с актьори</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Списък с режисьори</a>
