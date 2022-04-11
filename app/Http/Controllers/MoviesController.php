@@ -66,7 +66,7 @@ class MoviesController extends Controller
         $this->validate($request, $rules);
         $movie = new Movie();
         $movie->title = $request->title;
-        $movie->slug = Str::slug($request->name);
+        $movie->slug = Str::slug($request->title);
         $movie->original_title = $request->original_title;
         $movie->year = $request->year;
         $movie->plot = $request->plot;
