@@ -52,5 +52,6 @@ class ActorsCreate extends Component
         $this->emit('alert', ['type' => 'success', 'message' => 'Актьора е добавен', 'title' => $this->actor->name]);
         $this->actor = new Actor();
         $this->imgUrl = null;
+        $this->imgFilename = null;
     }
 }

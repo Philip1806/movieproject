@@ -45,7 +45,7 @@ class Actor extends Model
     {
         $original_file = Storage::disk("public")->get($imagePath);
         $info = pathinfo($imagePath);
-        $newfilename = $info['dirname'] . '/movie-' . time() . '.' . $info['extension'];
+        $newfilename = $info['dirname'] . '/actor-' . time() . '.' . $info['extension'];
 
         $img = Image::make($original_file);
         if (extension_loaded('exif')) $img->orientate();
