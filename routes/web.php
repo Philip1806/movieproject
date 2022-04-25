@@ -19,6 +19,7 @@ Route::get('/movies/{slug}', [App\Http\Controllers\HomeController::class, 'movie
 Route::get('/movies/genre/{slug}', [App\Http\Controllers\HomeController::class, 'genre'])->name('home.movies.genre');
 Route::get('/actors', [App\Http\Controllers\HomeController::class, 'actors'])->name('home.actors.index');
 Route::get('/actors/{slug}', [App\Http\Controllers\HomeController::class, 'actorsShow'])->name('home.actors.show');
+Route::get('/user/{slug}', [App\Http\Controllers\HomeController::class, 'userShow'])->name('home.user.index');
 
 Auth::routes();
 

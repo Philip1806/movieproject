@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Actor;
 use App\Models\Category;
 use App\Models\Movie;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -46,5 +47,13 @@ class HomeController extends Controller
         if (!$movie) abort(404);
         $actors = $movie->actors()->paginate(9);
         return view('movies.show')->with('movie', $movie)->with('actors', $actors);
+    }
+
+    public function userShow($slug)
+    {
+        $user = User::where('slug', '=', $slug)->first();
+        if (!$user) abort(404);
+        $movies = $user->movies()->latest()->paginate(6);
+        return view('user')->with('user', $user)->with('movies', $movies);
     }
 }
