@@ -15,10 +15,9 @@
         <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                {{-- Nothing in the world is as soft and yielding as water. --}}
-                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editProfile">
+                <a href="{{ route('home.user.index', auth()->user()->slug) }}" class="nav-link">
                     {{ auth()->user()->name }}
-                </button>
+                </a>
             </li>
         </ul>
         <ul class="navbar-nav px-3">
@@ -68,14 +67,6 @@
                         </ul>
                     </div>
                 @endif
-                <div class="modal" id="editProfile" tabindex="-1" aria-labelledby="editProfileLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            @livewire('user-edit')
-                        </div>
-                    </div>
-                </div>
                 @yield('content')
             </main>
         </div>
