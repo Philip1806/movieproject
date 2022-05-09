@@ -41,4 +41,8 @@ class Director extends Model
             return $date->toDateTimeString();
         }
     }
+    public function getUrl()
+    {
+        return route('home.directors.show', $this->slug);
+    }
 }

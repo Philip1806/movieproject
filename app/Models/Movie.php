@@ -61,4 +61,8 @@ class Movie extends Model
         $img->save($outputDirectoryPath . $newImageName, 75);
         return $folder . $newImageName;
     }
+    public function getUrl()
+    {
+        return route('home.movies.show', $this->slug);
+    }
 }

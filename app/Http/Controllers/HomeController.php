@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Actor;
 use App\Models\Category;
+use App\Models\Director;
 use App\Models\Movie;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -55,5 +56,20 @@ class HomeController extends Controller
         if (!$user) abort(404);
         $movies = $user->movies()->latest()->paginate(6);
         return view('user')->with('user', $user)->with('movies', $movies);
+    }
+    public function search()
+    {
+        return view('search');
+    }
+    public function directorsShow($slug)
+    {
+        $director = Director::where('slug', '=', $slug)->first();
+        if (!$director) abort(404);
+        $movies = $director->movies()->latest()->paginate(9);
+        return view('directors.show')->with('director', $director)->with('movies', $movies);
+    }
+    public function directors()
+    {
+        return view('directors.index')->with('directors', Director::paginate(9));
     }
 }

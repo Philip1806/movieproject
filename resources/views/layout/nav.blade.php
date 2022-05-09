@@ -36,6 +36,9 @@
                 <a class="nav-link" href="{{ url('') }}">Начало</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('home.search') }}">Търсене</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('home.movies') }}">Списък с филми</a>
             </li>
             <li class="nav-item">
@@ -45,7 +48,7 @@
                 <a class="nav-link" href="{{ route('home.actors.index') }}">Списък с актьори</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Списък с режисьори</a>
+                <a class="nav-link" href="{{ route('home.directors.index') }}">Списък с режисьори</a>
             </li>
         </ul>
     </div>

@@ -8,13 +8,13 @@
     <div class="container mt-3">
         <div class="px-4 pb-4 pt-3">
             <div class="alert alert-dark" role="alert">
-                Филми в които участва {{ $actor->name }}
+                Филми от режисьора {{ $director->name }}
             </div>
         </div>
         @include('movies._listmovies')
         @if ($movies->isEmpty())
             <div class="alert alert-info my-3" role="alert">
-                Актьора не участва във филми.
+                Режисьора няма филми.
             </div>
         @endif
     </div>

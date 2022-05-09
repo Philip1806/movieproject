@@ -20,6 +20,9 @@ Route::get('/movies/genre/{slug}', [App\Http\Controllers\HomeController::class, 
 Route::get('/actors', [App\Http\Controllers\HomeController::class, 'actors'])->name('home.actors.index');
 Route::get('/actors/{slug}', [App\Http\Controllers\HomeController::class, 'actorsShow'])->name('home.actors.show');
 Route::get('/user/{slug}', [App\Http\Controllers\HomeController::class, 'userShow'])->name('home.user.index');
+Route::get('/directors', [App\Http\Controllers\HomeController::class, 'directors'])->name('home.directors.index');
+Route::get('/directors/{slug}', [App\Http\Controllers\HomeController::class, 'directorsShow'])->name('home.directors.show');
+Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('home.search');
 
 Auth::routes();
 

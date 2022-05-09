@@ -56,4 +56,8 @@ class Actor extends Model
         Storage::disk("public")->delete($imagePath);
         return $newfilename;
     }
+    public function getUrl()
+    {
+        return route('home.actors.show', $this->slug);
+    }
 }
